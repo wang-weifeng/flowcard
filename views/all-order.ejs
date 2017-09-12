@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>流量卡申请页面</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+</head>
+
+<body>
+    <form class="form-inline">
+            <select id="orderChoose" class="form-control" onchange=allOrder.hqVal(this.value)>
+                    <option value="-1">全部订单</option>
+                    <option value="0">未处理订单</option>
+                    <option value="1">已处理(有效)</option>
+                    <option value="2">已处理(无效)</option>
+                </select>
+                <select id="exampleInputEmail3" class="form-control" onchange=allOrder.hqV(this.value)>
+                        <option value="00000201708">00000201708</option>
+                        <option value="00000201709">00000201709</option>
+                </select>
+        <!-- <div class="form-group">
+          <label class="sr-only" for="exampleInputEmail3">输入渠道号</label>
+          <input type="text" class="form-control" id="exampleInputEmail3" placeholder="输入渠道号">
+        </div> -->
+        <!-- <button type="button" id="qdhao" class="btn btn-primary">确定</button> -->
+      </form>
+    <div>
+        <table class="table table-hover table table-bordered table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>开户名</th>
+                    <th>身份证</th>
+                    <th>联系方式</th>
+                    <th>配送地址</th>
+                    <th>是否支付</th>
+                    <th>处理状态</th>
+                    <th>时间</th>
+                    <th>操作</th>
+                    <th>发送短信</th>
+                    <th>发送短信时间</th>
+                </tr>
+            </thead>
+            <tbody id="renderOrderList">
+                <tr>
+                    <td>wwf</td>
+                    <td>wwf</td>
+                    <td>11111111111</td>
+                    <td>11111111111</td>
+                    <td>是</td>
+                    <td>有效</td>
+                    <td>有效</td>
+                    <td>
+                        <a>
+                        <span >有效</span>
+                    </a>
+
+                        <a>
+                        <span >无效</span>
+                    </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="text-align:center;margin-bottom:20px">
+            <button type="button" class="btn btn-primary" id="sypage">上一页</button>
+            <button type="button" class="btn btn-primary" id="xypage">下一页</button>
+        页数：<input type="text" id="choosePropage" style="height: 33px;border-radius: 4px; border: 1px solid #ccc;width:40px;text-align:center">
+        <button id="choosePage" class="btn btn-info">确定</button>
+    </div>
+</body>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script type="text/javascript" src="/javascripts/session.js"></script>
+<script type="text/javascript" src="/javascripts/all-order.js"></script>
+
+</html>

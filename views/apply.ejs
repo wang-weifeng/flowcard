@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>沃派畅爽卡</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="format-detection" content="telephone=no">
+    <script type="text/javascript" src="/javascripts/rem.js"></script>
+    <link rel="stylesheet" href="/stylesheets/applyone.css">
+    <link rel="stylesheet" href="/stylesheets/applytwo.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<style>
+.head {
+    background: #ffffff;
+    font-size: 0.2rem;
+    box-sizing: border-box;
+    height: 0.8rem;
+    padding: 0 0.16rem;
+    color: #666;
+}
+
+.head:before {
+    content: '';
+    display: table;
+    clear: both
+}
+
+.head:after {
+    content: '';
+    display: table;
+    clear: both
+}
+
+.left_gps {
+    float: left;
+    width: 20%;
+    line-height: 0.8rem;
+}
+
+.right_unicom {
+    float: right;
+    width: 20%;
+    line-height: 0.8rem;
+    text-align: right
+}
+
+.title {
+    text-align: center;
+    width: 60%;
+    float: left;
+    font-size: 0.33rem;
+    line-height: 0.8rem;
+}
+
+.gps-icon {
+    display: inline-block;
+    width: 0.25rem;
+    height: 0.33rem;
+    background: url('images/back.png');
+    background-size: 100% 100%;
+    vertical-align: -0.05rem;
+}
+
+.unicom_icon {
+    display: inline-block;
+    width: 0.9rem;
+    height: 0.49rem;
+    background: url('images/unicom.png');
+    background-size: 100% 100%;
+    vertical-align: middle
+}
+</style>
+<body>
+
+    <div class="dataCard">
+        <!-- <p id="searchOrder">查询订单</p> -->
+        <section style="min-height: 100px;" class="clearfix">
+            <div class="head">
+                <div class="left_gps" id="backIndex">
+                    <i class="gps-icon"></i>
+                </div>
+                <div class="title">限时优惠活动</div>
+                <div class="right_unicom">
+                    <i class="unicom_icon"></i>
+                </div>
+            </div>
+            <div class="discription">     
+                <p>已选择 <span class="select">“沃派畅爽卡”,号码归属地-浙江</span> </p>
+                <p class="discri">根据国家实名制要求，请准确提供身份证信息</p>
+            </div>
+            <ul class="fill-list">
+                <li class="apply-name">
+                    <div class="p-title">姓名</div>
+                    <div class="p-content">
+                        <input type="text" placeholder="请输入身份证件姓名" maxlength="15" id="accountName">
+                    </div>
+                </li>
+                <li class="apply-id">
+                    <div class="p-title">身份证</div>
+                    <div class="p-content">
+                        <input type="text" placeholder="请输入身份证号" maxlength="18" id="idCard">
+                    </div>
+                </li>
+                <li class="apply-tel" id="telPhoneNumberErron">
+                    <div class="p-title">联系电话</div>
+                    <div class="p-content">
+                        <input id="phone" type="tel" placeholder="请输入手机号" maxlength="11" id="tels" onkeyup="this.value=this.value.replace(/[^\d]/g,'') "
+                            onafterpaste="this.value=this.value.replace(/[^\d]/g,'')">
+                    </div>
+                </li>
+            </ul>
+            <ul class="fill-list fill-list1">
+                <h2 class="peisong">请选择配送地址</h2>
+                <!-- <li class="delivery p-select" id="p-areaList">
+                <div class="p-title" style="overflow: hidden">地区</div>
+                <div class="p-content" style=" white-space: nowrap;text-overflow: ellipsis;overflow: hidden">
+                    <span class=" fatherCity1"></span>
+                    <span class="shi"></span>
+                    <span class="selectAre"> 请选择区 / 县</span>
+                </div>
+            </li> -->
+                <div class="box">
+                    <div class="iphone iphone1">
+                        <div class="browser">
+                            <!--选择地区-->
+                            <section class="express-area">
+                                <a id="expressArea" href="javascript:void(0)">
+                                    <dl>
+                                        <dt>选择地区：</dt>
+                                        <dd>省 > 市 > 区/县</dd>
+                                    </dl>
+                                </a>
+                            </section>
+                            <!--选择地区弹层-->
+                            <section id="areaLayer" class="express-area-box">
+                                <header>
+                                    <h3 >
+                                        <span class="one"></span>
+                                        <span class="two"></span>
+                                        <span class="three"></span>
+                                    </h3>
+                                    <a id="backUp" class="back" href="javascript:void(0)" title="返回"></a>
+                                    <a id="closeArea" class="close" href="javascript:void(0)" title="关闭"></a>
+                                </header>
+                                <article id="areaBox">
+                                    <ul id="areaList" class="area-list"></ul>
+                                </article>
+                            </section>
+                            <!--遮罩层-->
+                            <div id="areaMask" class="mask"></div>
+
+                        </div>
+                    </div>
+                    <li class="delivery no-send active" style="padding-right:0;font-size:0.05rem;color:#f86261">
+                        新疆地区用户不支持物流配送，请到订购号码归属地联通营业厅自提
+                    </li>
+                    <li class="delivery clearStyle text-area-all" >
+                        <div class="p-content clearMargin clearStyle">
+                        <textarea id="address" autoHeight="true" style="font-size: 0.25rem !important;" class="text-area" name="address" rows="1"
+                                  title="delivery-desc" placeholder="街道/镇+村/小区/写字楼+门牌号"></textarea>
+                        </div>
+                    </li>
+                </div>
+
+            </ul>
+            <div style="clear: both"></div>
+        </section>
+        <div class="apply" style="padding-top:15px">
+            <div class="sendBtn active" id="applyOrde">确认提交，免费送卡上门</div>
+        </div>
+        <div class="discription" style="background:#eee">     
+            <p><span class="select">套餐资费：18元/月=全国免费接听+国内通话120分钟/</span> </p>
+            <p class="discri select">月+省内流量6G/月+校区流量不限量+全国流量300M/</p>
+            <p class="discri select">月（每年寒暑假1/2/7/8月赠送）+来电显示</p>
+        </div>
+        <div></div>
+    </div>
+</body>
+<script type="text/javascript">
+    var spinfocode = '<%= spinfocode%>';
+</script>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script src="/javascripts/jquery.are.js"></script>
+<script type="text/javascript" src="/javascripts/apply.js"></script>
+<script type="text/javascript" src="/javascripts/layer.js"></script>
+</html>
