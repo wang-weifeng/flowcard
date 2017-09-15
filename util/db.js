@@ -1,7 +1,7 @@
 var dbhost = "127.0.0.1";
 var dbuser = "root";
 var dbdatabase = "kingcard";
-var dbpassword = "";
+var dbpassword = "12456";
 var mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit: 10,
