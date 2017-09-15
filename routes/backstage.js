@@ -332,6 +332,54 @@ router.get('/v1/problem-order', function (req, res, next) {
 });
 
 /**
+ * 待定订单变回未处理订单
+ * @param req
+ * @param res
+ */
+router.get('/v1/problemback-order', function (req, res, next) {
+    var retrieve_resp = {
+        status: true,
+        message: "ok",
+        data: []
+    }
+    var apply_id = req.query.apply_id;
+    var token = req.query.token;
+    tokenValidation(token, function (result) {
+        if (result != null) {
+            var createSql = "select apply_status from apply where apply_id=" + apply_id;
+            pool.query(createSql, function (error, results, fields) {
+                if (error) {
+                    console.log("Database access error while retrieve operator!");
+                    retrieve_resp.status = false;
+                    retrieve_resp.message = "Internal Error!";
+                    res.send(retrieve_resp);
+                } else {
+                    if(results[0].apply_status == 3){
+                        var updateSql = "update apply set apply_status=0 where apply_id=" + apply_id;
+                        pool.query(updateSql, function (error, results, fields) {
+                            if (error) {
+                                console.log("Database access error while retrieve operator!");
+                                retrieve_resp.status = false;
+                                retrieve_resp.message = "Internal Error!";
+                                res.send(retrieve_resp);
+                            } else {
+                                console.log("待定订单回到未处理正常成功");
+                                res.send(retrieve_resp);
+                            }
+                        });
+                    }
+                }
+            });
+        } else {
+            retrieve_resp.status = false;
+            retrieve_resp.message = "token过期，重新登录!";
+            console.log("token过期!");
+            res.send(retrieve_resp);
+        }
+    })
+});
+
+/**
  * 发送短信
  * @param req
  * @param res
