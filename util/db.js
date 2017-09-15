@@ -1,7 +1,7 @@
-var dbhost = "hzzmdata.mysql.rds.aliyuncs.com";
-var dbuser = "mm_root";
+var dbhost = "127.0.0.1";
+var dbuser = "root";
 var dbdatabase = "kingcard";
-var dbpassword = "NBgiuDrKc9eXNjj0zllo";
+var dbpassword = "";
 var mysql = require('mysql');
 var pool = mysql.createPool({
     connectionLimit: 10,
