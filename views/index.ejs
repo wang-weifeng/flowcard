@@ -35,14 +35,20 @@
     }
 
     .main {
-        background: #FF7E7E;
-        padding-bottom: 0.28rem;
+        background: #FF272D;
     }
     .delay4{
         transition-delay: 0.4s
     }
-    .bottom_area {
-        background: #FF7E7E
+    .bottom_content {
+        /* background: -moz-linear-gradient(top, #FE4D40 0%, #FE4D40 30%,#F9693E 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FE4D40), color-stop(30%,#FE4D40),color-stop(100%,#F9693E));
+        background: -webkit-linear-gradient(bottom, #FE4D40 0%,#FE4D40 30%,#F9693E 100%);
+        background: -o-linear-gradient(bottom, #FE4D40 0%,#FE4D40 30%,#F9693E 100%);
+        background: -ms-linear-gradient(bottom, #FE4D40 0%,#FE4D40 30%,#F9693E 100%);
+        background: linear-gradient(to bottom, #FE4D40 0%,#FE4D40 30%,#F9693E 100%); */
+        background: #FF272D;
+        padding-bottom:0.56rem; 
     }
 
     .dec_area {
@@ -162,7 +168,7 @@
         margin: 0 auto;
         position: relative;
     }
-    .get_btn:after{
+     .get_btn:after{
         content:'';display: block;width: 0.62rem;height: 0.86rem;position: absolute;background: url('images/finger.png');background-size: 100%;left: 80%;top:40%;
         animation-name: floating;
         -webkit-animation-name: floating;
@@ -172,14 +178,23 @@
 
         animation-iteration-count: infinite;
         -webkit-animation-iteration-count: infinite;
-    }
+    } 
     .rule_area {
-        background: #ffffff;
         width: 93%;
-        border-radius: 10px 10px;
+        border-radius: 0 0 10px 10px;
         margin: 0 auto;
         box-sizing: border-box;
         margin-bottom: 0.26rem;
+        margin-top: -0.26rem;
+        z-index: 3;
+        position: relative;
+        background: #ffffff
+        /* background: -moz-linear-gradient(top, #FFD9D7 0%, #fff 6.08%,#fff 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#FFD9D7), color-stop(6.08%,#fff),color-stop(100%,#fff));
+        background: -webkit-linear-gradient(bottom, #FFD9D7 0%,#fff 6.08%,#fff 100%);
+        background: -o-linear-gradient(bottom, #FFD9D7 0%,#fff 6.08%,#fff 100%);
+        background: -ms-linear-gradient(bottom, #FFD9D7 0%,#fff 6.08%,#fff 100%);
+        background: linear-gradient(to bottom, #FFD9D7 0%,#fff 6.08%,#fff 100%); */
     }
 
     .rule_tit {
@@ -189,12 +204,11 @@
     }
 
     #fix_get {
-        background: #FF7E7E;
+        background: #FF272D;
         position: fixed;
         top: 0;
         left: 0;
         z-index: 9;
-        box-shadow: 0 0 3px 3px #000000;
         box-shadow: 0 0 26px 0px #000000;
         padding: 15px 0;
         opacity: 0;
@@ -344,7 +358,7 @@
     }
 
     .pr_tit {
-        padding-bottom: 0.16rem;
+        padding-bottom: 0;
     }
 
     .rule_item:before {
@@ -362,7 +376,7 @@
     .rule_item {
         box-sizing: border-box;
         position: relative;
-        border-bottom: 1px dotted #E6E6E6;
+        border-bottom: 1px solid #E6E6E6;
         height: 2.52rem;
     }
 
@@ -394,7 +408,7 @@
     }
 
     .text_area .title {
-        color: #5e2200;
+        color: #5c2a06;
         font-size: 0.3rem;
         font-family: '微软雅黑';
         margin-top: 0.15rem;
@@ -438,6 +452,7 @@
         display: block;
         color: #666666;
         font-size: 0.22rem;
+        text-decoration: underline;
     }
 
     .other_dec {
@@ -450,21 +465,20 @@
         font-size: 0.24rem;
         text-align: center;
         color: #ffffff;
-        margin-bottom: 0.4rem;
     }
 
     .get_area {
-        padding: 0.2rem 0 0.15rem;
+        padding: 0.05rem 0 0.15rem;
         color: #660207;
         text-align: center;
         font-size: 0.22rem;
     }
 
     .get_area p {
-        padding-top: 0.1rem;
+        color:#ffc2c5
     }
     .get_area p span{
-        color: #ff8608
+        color: #ffc2c5
     }
     .pr_tit>img {
         display: block;
@@ -512,7 +526,8 @@
         text-align: center;
         height: 4rem;
         overflow-y: scroll;
-        margin: 0.2rem 0
+        margin: 0.2rem 0;
+        line-height: 1.2em;
     }
 
     .close {
@@ -794,6 +809,7 @@
         color: #ffffff;
         font-size: 0.32rem;
         border-radius: 8px;
+        margin-bottom: 0.37rem;
     }
 
     .slide_box .bottom_area {
@@ -985,7 +1001,6 @@
         box-sizing: border-box;
         padding-left: 0.35rem;
         font-weight: bold;
-        padding-bottom: 0.3rem;
     }
 
     .page2 .bottom_area p {
@@ -1003,7 +1018,7 @@
         position: relative;
         z-index: 2
     }
-    /* .dec_head:before{content:'';display: block;width: 0.24rem;height: 0.24rem;background: url('images/money.png');position: absolute;top: 0;left:3%;background-size: 100%;} */
+    .dec_head:before{content:'';display: block;width: 0.24rem;height: 0.24rem;background: url('images/money.png');position: absolute;top: 0;left:3%;background-size: 100%;}
     .dec_item{box-sizing: border-box;border-bottom:1px solid #E0ECE2;border-right: 1px solid #E0ECE2}
     .dec_item:nth-child(2n){border-right: none;}
     .dec_item .left_icon .dec_icon.di1{background-position: 0 0}
@@ -1014,7 +1029,7 @@
     .dec_item .left_icon .dec_icon.di6{background-position: -1.7rem 0}
     .dec_item .left_icon .dec_icon.di7{background-position: -2.04rem 0}
     .dec_item .left_icon .dec_icon.di8{background-position: -2.38rem 0}
-    .pr_tit{margin-top: 0.3rem;}
+    .pr_tit{margin-top: 0;position: relative;z-index: 1;}
     @keyframes floating {
         0% {transform: translate(0)}
         50% {transform: translate(10%,10%);}
@@ -1036,7 +1051,19 @@
     .way1_content .time,.way1_content .qq{color: #666666;font-size: 0.3rem;text-align: left;box-sizing: border-box;padding-left: 0.35rem;}
     .mainhide{visibility: hidden;opacity: 0}
     .way1_content .time{margin-bottom: 0.2rem;}
-    .button_dec{color: #fb5d1e;font-size: 0.26rem;text-align: center;box-sizing: border-box;padding: 0.26rem 0.34rem 0.26rem 0;}
+    .rule_head{height: 0.86rem;position: relative}
+    .rule_head .head_title{color: #d45b29;font-size: 0.3rem;text-align: center;line-height: 1.06rem;position: relative;z-index: 2;font-weight: bold;}
+    .rule_head .head_title:before{content:'';display: block;width:0.66rem;height:0.28rem;background: url('images/bl.png');background-size: 100%;position: absolute;top:50%;left:-3.6%;}
+    .rule_head .rect_bac{content: '';display: inline-block;width: 52%;height: 0.21rem;background: #FAE0D4;position: absolute;z-index: 1;top: 67%;left: 24%;}
+    .rule_head .rect_bac:before{content:'';display: block;position: absolute;width: 0.27rem;height: 0.42rem;background: url(images/left_icon.png);left:-0.4rem;bottom:0;;background-size: 100%}
+    .rule_head .rect_bac:after{content:'';display: block;position: absolute;width: 0.22rem;height: 0.38rem;background: url(images/right_icon.png);right:-0.32rem;bottom:0;;background-size: 100%}
+    .pre_area{box-sizing: border-box;margin: -0.07rem 6.17% 0;background: #FF4D00;position: relative;z-index: 6;border-radius: 0.07rem;box-shadow: 0 2px 8px 3px #F80D00;margin-bottom: 0.14rem;}
+    .pre_ul{padding: 0.13rem 0 0 0.13rem;}
+    .pre_li{display: block;float: left;width: 31.3%;margin-right: 2%;background: #FFE8B2;text-align: center;margin-bottom: 0.1rem;border-radius: 0.07rem;}
+    .pre_num{display: inline-block;width: 0.25rem;height: 0.25rem;background: url('images/n_bac.png');background-size: 100%;font-size: 0.18rem;color: #ffffff;line-height: 0.25rem;margin-bottom: 0.07rem;}
+    .pre_dec{color: #61593d;font-size: 0.22rem;margin-bottom: 0.1rem;font-weight: bold; }
+    .pre_price{color: #ffffff;font-size: 0.21rem;display: table;height: 0.3rem;background: #F26017;padding: 0 0.17rem;border-radius: 0.125rem 0.125rem;margin: 0 auto 0.08rem;}
+    .pre_price>span{display: table-cell;vertical-align: middle;line-height: 0.3rem;}
 </style>
 
 <body>
@@ -1057,54 +1084,68 @@
         <div class="banner">
             <img src="images/ban.png" alt="">
         </div>
-        <div class="bottom_area">
-            <div class="dec_area">
-                <div class="dec_head">18元/月畅享8大特权福利</div>
-                <div class="dec_box">
-                    <ul class="dec_list">
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di4"></i></div>
-                            <div class="right_content"><span class="green">省内流量 </span>6G/月</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di8"></i></div>
-                            <div class="right_content"><span class="green">腾讯视频 </span>免费送</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di3"></i></div>
-                            <div class="right_content"><span class="green">国内通话 </span>120分钟/月</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di7"></i></div>
-                            <div class="right_content"><span class="green">话费补贴 </span>900元</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di5"></i></div>
-                            <div class="right_content"><span class="green">来电显示 </span>0元/月</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di2"></i></div>
-                            <div class="right_content"><span class="green">校园流量 </span>不限量</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di1"></i></div>
-                            <div class="right_content"><span class="green">免费接听 </span>全国范围</div>
-                        </li>
-                        <li class="dec_item">
-                            <div class="left_icon"><i class="dec_icon di6"></i></div>
-                            <div class="right_content"><span class="green">全国流量 </span>1.2G/年</div>
-                        </li>
-                    </ul>
-                    <div class="get_area">
-                        <a class="get_btn" id="get_btn" href="javascript:void(0)"><img src="images/get_btn.png" alt=""></a>
-                        <p>已有<span>38082</span>人领卡</p>
-                    </div>
-                </div>
+        <div class="bottom_content">
+            <div class="pre_area">
+                <ul class="pre_ul clear">
+                    <li class="pre_li">
+                        <span class="pre_num">1</span>
+                        <div class="pre_dec">省内流量 6G/月</div>
+                        <div class="pre_price"><span>价值￥225</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">2</span>
+                        <div class="pre_dec">腾讯视频3个月</div>
+                        <div class="pre_price"><span>价值￥57</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">3</span>
+                        <div class="pre_dec">通话120分钟/月</div>
+                        <div class="pre_price"><span>价值￥24</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">4</span>
+                        <div class="pre_dec">校园流量不限量</div>
+                        <div class="pre_price"><span>价值￥无价</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">5</span>
+                        <div class="pre_dec">全国流量1.2G/年</div>
+                        <div class="pre_price"><span>价值￥60</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">6</span>
+                        <div class="pre_dec">来电显示0元/月</div>
+                        <div class="pre_price"><span>价值￥6</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">7</span>
+                        <div class="pre_dec">免费接听0元/月</div>
+                        <div class="pre_price"><span>价值￥无价</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">8</span>
+                        <div class="pre_dec">话费补贴50个月</div>
+                        <div class="pre_price"><span>价值￥900</span></div>
+                    </li>
+                    <li class="pre_li">
+                        <span class="pre_num">9</span>
+                        <div class="pre_dec">话费赠送50元</div>
+                        <div class="pre_price"><span>价值￥50</span></div>
+                    </li>
+                </ul>
+            </div>
+            <div class="get_area">
+                <a class="get_btn" id="get_btn" href="javascript:void(0)"><img src="images/get_btn.png" alt=""></a>
+                <p>已有<span>38082</span>人领卡</p>
             </div>
             <div class="pr_tit">
                 <img src="images/pr_tit.png" alt="">
             </div>
             <div class="rule_area">
+                <div class="rule_head">
+                    <div class="rect_bac"></div>
+                    <div class="head_title">每月18元，尊享8大特权</div>
+                </div>
                 <div class="rule_item j">
                     <span class="num_tag">1</span>
                     <div class="icon_area left">
@@ -1118,68 +1159,68 @@
                 <div class="rule_item o">
                     <span class="num_tag">2</span>
                     <div class="icon_area right">
-                        <img src="images/png2.png" alt="">
+                        <img src="images/png3.png" alt="">
                     </div>
                     <div class="text_area left">
-                        <div class="title">校园范围，流量不限量</div>
-                        <div class="dec">
-                            校区范围，流量无限使用，上不封顶。目前覆盖浙江省106所高校及部分中职。
-                            <a href="javascript:void(0)" class='pop'>>>点击查看覆盖范围</a>
-                        </div>
+                        <div class="title">省内流量6G/月</div>
+                        <div class="dec">走出校园，不怕没流量，浙江省内随走随用。</div>
                     </div>
                 </div>
                 <div class="rule_item j">
                     <span class="num_tag">3</span>
                     <div class="icon_area left">
-                        <img src="images/png3.png" alt="">
-                    </div>
-                    <div class="text_area right">
-                        <div class="title">省内流量6G/月</div>
-                        <div class="dec">走出校园，不怕没流量，浙江省内随走随用。</div>
-                    </div>
-                </div>
-                <div class="rule_item o">
-                    <span class="num_tag">4</span>
-                    <div class="icon_area right">
                         <img src="images/png4.png" alt="">
                     </div>
-                    <div class="text_area left">
+                    <div class="text_area right">
                         <div class="title">全国流量，1.2G/年</div>
                         <div class="dec">
                             寒暑假赠送全国流量，每年1/2/7/8月自动赠送全国流量300M/月。
                         </div>
                     </div>
                 </div>
-                <div class="rule_item j">
-                    <span class="num_tag">5</span>
-                    <div class="icon_area left">
+                <div class="rule_item o">
+                    <span class="num_tag">4</span>
+                    <div class="icon_area right">
                         <img src="images/png5.png" alt="">
                     </div>
-                    <div class="text_area right">
+                    <div class="text_area left">
                         <div class="title">国内通话120分钟/月</div>
                         <div class="dec">套餐内含120分钟通话时间，可拨打国内任意电话。</div>
                     </div>
                 </div>
-                <div class="rule_item o">
-                    <span class="num_tag">6</span>
-                    <div class="icon_area right">
+                <div class="rule_item j">
+                    <span class="num_tag">5</span>
+                    <div class="icon_area left">
                         <img src="images/png6.png" alt="">
                     </div>
-                    <div class="text_area left">
+                    <div class="text_area right">
                         <div class="title">全国范围免费接听</div>
                         <div class="dec">
                             全国范围内免费接听，无漫游收费。
                         </div>
                     </div>
                 </div>
+                <div class="rule_item o">
+                    <span class="num_tag">6</span>
+                    <div class="icon_area right">
+                        <img src="images/png7.png" alt="">
+                    </div>
+                    <div class="text_area left">
+                        <div class="title">免费赠送来电显示</div>
+                        <div class="dec">免费赠送来电显示，原价6元/月。</div>
+                    </div>
+                </div>
                 <div class="rule_item j">
                     <span class="num_tag">7</span>
                     <div class="icon_area left">
-                        <img src="images/png7.png" alt="">
+                        <img src="images/png2.png" alt="">
                     </div>
                     <div class="text_area right">
-                        <div class="title">免费赠送来电显示</div>
-                        <div class="dec">免费赠送来电显示，原价6元/月。</div>
+                        <div class="title">校园范围，流量不限量</div>
+                        <div class="dec">
+                            校区范围，流量无限使用，上不封顶。目前覆盖浙江省106所高校及部分中职。
+                            <a href="javascript:void(0)" class='pop'>>>点击查看覆盖范围</a>
+                        </div>
                     </div>
                 </div>
                 <div class="rule_item o">
@@ -1603,18 +1644,19 @@
                 </div>
                 <input id="address" class="address_input" placeholder="街道/镇+村/小区/写字楼+门牌号"></input>
                 <button type="button" class="address_submit" id="applyOrder">确认提交,免费送卡上门</button>
-                <div class="button_dec">激活就送50元话费!</div>
             </div>
             <div class="way1_area">
                 <div class="way_tit">
                     <i class="way_icon way1_icon"></i>方式二<span class="orange">（需要5-7个工作日）</span>
                 </div>
                 <div class="way1_content">
-                    <div class="way1c_dec">拨打沃派畅爽卡服务热线4001009440，由客服人员进行身份核对，再为您免费办理并邮寄给您。</div>
+                    <div class="way1c_dec">拨打沃派畅爽卡服务热线4001009440,或添加沃派QQ群,由客服人员进行身份核对,再为您免费办理并邮寄给您。</div>
                     <div class="tel_number clear"><i class="left_icon"></i>客服热线:<a href="tel:4001009440">4001009440</a></div>
                     <div class="qq_group clear"><i class="left_icon"></i>沃派QQ群:<span>584079185</span></div>
                     <div class="time">服务时间：周一至周五 09:00-18:00</div>
                 </div>
+            </div>
+            <div class="bottom_area">
             </div>
 
         </div>
@@ -2441,4 +2483,5 @@
 
 </script>
 <script type="text/javascript" src="/javascripts/uv.js"></script>
+
 </html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>流量卡申请页面</title>
+    <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+</head>
+
+<body>
+    <form>
+        <div class="form-group">
+            <label for="exampleInputEmail1">姓名</label>
+            <input type="text" class="form-control" id="xname" placeholder="姓名">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">身份证号码</label>
+            <input type="text" class="form-control" id="xidcard" placeholder="身份证号码">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">配送地址</label>
+            <input type="text" class="form-control" id="xaddress" placeholder="配送地址">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">电话号码</label>
+            <input type="text" class="form-control" id="xphone" placeholder="电话号码">
+        </div>
+        <label for="exampleInputPassword1">备注</label>
+        <textarea class="form-control" rows="3" id="xbeizhu"></textarea>
+        <button type="button" class="btn btn-success" id="xtijiao">修改提交</button>
+    </form>
+</body>
+<script type="text/javascript">
+    var xid = '<%= apply_id%>';
+</script>
+<script type="text/javascript" src="/javascripts/jquery.js"></script>
+<script type="text/javascript" src="/javascripts/session.js"></script>
+<script type="text/javascript" src="/javascripts/xiugai.js"></script>
+
+</html>

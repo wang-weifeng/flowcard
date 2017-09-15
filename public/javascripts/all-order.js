@@ -2,7 +2,7 @@ var allOrder = {};
 
 allOrder.init = function () {
     allOrder.bindEvent();
-    allOrder.rederOrder(-1, 1, "00000201708");
+    allOrder.rederOrder(-1, 1, "0");
     allOrder.code();
 };
 
@@ -120,9 +120,9 @@ allOrder.rederOrder = function (chooseorderType, page, qudao) {
                     orderListHtml = "<tr><td>" + result.data[key].apply_name + "</td><td>" + result.data[key].apply_idcard + "</td><td>" + result.data[key].apply_phone + "</td>"
                         + "<td>" + result.data[key].apply_address + "</td><td>" + result.data[key].paysta + "</td>"
                         + "<td>" + result.data[key].sta + "</td><td>" + util.formateDate(time) + "</td>"
-                        + "<td><a onClick=allOrder.effectOrder(" + result.data[key].apply_id + ")><span >有效</span></a><a onClick=allOrder.invalidOrder(" + result.data[key].apply_id + ")><span >无效</span></a></td>"
+                        + "<td><a onClick=allOrder.effectOrder(" + result.data[key].apply_id + ")><span >有效</span></a>|<a onClick=allOrder.invalidOrder(" + result.data[key].apply_id + ")><span >无效</span></a>|<a onClick=allOrder.problemOrder(" + result.data[key].apply_id + ")><span >待定</span></a></td>"
                         + "<td><a onClick=allOrder.sendOrder(" + result.data[key].apply_id + "," + result.data[key].apply_phone + ")>发送</a><span>" + yy_phone + "</span></td>"
-                        + "<td>" + send_time + "</td></tr>";
+                        + "<td>" + send_time + "</td><td>" + result.data[key].spinfocode + "</td><td>" + result.data[key].info + "</td><td><a onClick=allOrder.xiugaiOrder(" + result.data[key].apply_id + ")><span >修改</span></a></td></tr>";
                     $("#renderOrderList").append(orderListHtml);
                 })
             } else {
@@ -190,6 +190,35 @@ allOrder.invalidOrder = function (applyid) {
     })
 }
 
+allOrder.problemOrder = function (applyid) {
+    var token = sessionStorage.getItem("token");
+    if (!token) {
+        clearSession();
+        window.location.href = "/backstage/login";
+        return;
+    }
+    $.get('/backstage/v1/problem-order?apply_id=' + applyid + '&token=' + token, function (result) {
+        if (result.status == true) {
+            alert("待定的订单被处理成功");
+            var orderChoose = $("#orderChoose").val();
+            var choosePropage = $("#choosePropage").val();
+            var exampleInputEmail3 = $("#exampleInputEmail3").val();
+            allOrder.rederOrder(orderChoose, choosePropage,exampleInputEmail3);
+        } else if (!result.status && result.message == "token过期，重新登录!") {
+            clearSession();
+            window.location.href = "/backstage/login";
+            return;
+        } else {
+            alert("网络暂时异常￣へ￣!");
+            return;
+        }
+    })
+}
+
+allOrder.xiugaiOrder = function (applyid) { 
+    window.location.href = '/backstage/xiugai?apply_id='+applyid;
+}
+
 allOrder.sendOrder = function (applyid, phone) {
     var token = sessionStorage.getItem("token");
     if (!token) {
@@ -243,7 +272,7 @@ allOrder.code = function () {
         window.location.href = "/backstage/login";
         return;
     }
-    var codeListHtml = '';
+    var codeListHtml = "<option value='0'>全部</option>";
     $("#exampleInputEmail3").html(codeListHtml);
     $.get('/backstage/v1/code?token=' + token, function (result) {
         if (result.status == true) {

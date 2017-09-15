@@ -43,6 +43,16 @@ router.get('/new-tv', function (req, res, next) {
 });
 
 /**
+ * 修改渲染页面
+ * @param req
+ * @param res
+ */
+router.get('/xiugai', function (req, res, next) {
+    var apply_id = req.query.apply_id;
+    res.render('xiugai', { title: 'Express', apply_id: apply_id });
+});
+
+/**
  * 流量卡后台登陆
  * @param req
  * @param res
@@ -106,9 +116,15 @@ router.get('/v1/order-search', function (req, res, next) {
     var token = req.query.token;
     tokenValidation(token, function (result) {
         if (result != null) {
-            var createSql = "select * from apply where apply_status=" + apply_status + " and spinfocode='"+spinfocode + "' order by apply_time desc limit " + page * 30 + ",30";
-            if (apply_status == -1) {
-                createSql = "select * from apply where spinfocode='"+spinfocode + "' order by apply_time desc limit " + page * 30 + ",30";
+            var createSql = "select * from apply order by apply_time desc limit " + page * 30 + ",30";
+            if (spinfocode != 0 && apply_status != -1){ 
+                var createSql = "select * from apply where apply_status=" + apply_status + " and spinfocode='" + spinfocode + "' order by apply_time desc limit " + page * 30 + ",30";                
+            }
+            if (apply_status == -1 && spinfocode != 0) {
+                createSql = "select * from apply where spinfocode='" + spinfocode + "' order by apply_time desc limit " + page * 30 + ",30";
+            }
+            if (apply_status != -1 && spinfocode == 0) {
+                createSql = "select * from apply where apply_status=" + apply_status + " order by apply_time desc limit " + page * 30 + ",30";
             }
             console.log(createSql);
             pool.query(createSql, function (error, results, fields) {
@@ -129,6 +145,8 @@ router.get('/v1/order-search', function (req, res, next) {
                         dataItem.apply_time = item.apply_time;
                         dataItem.apply_send = item.apply_send;
                         dataItem.apply_send_time = item.apply_send_time;
+                        dataItem.info = item.info;
+                        dataItem.spinfocode = item.spinfocode;
                         if (item.apply_send == 0) {
                             dataItem.send = '未发送';
                         } else if (item.apply_send == 1) {
@@ -140,6 +158,8 @@ router.get('/v1/order-search', function (req, res, next) {
                             dataItem.sta = '已处理(有效)';
                         } else if (item.apply_status == 2) {
                             dataItem.sta = '已处理(无效)';
+                        } else if (item.apply_status == 3) {
+                            dataItem.sta = '待确定(问题)';
                         }
                         if (item.apply_paystatus == 0) {
                             dataItem.paysta = '否';
@@ -263,6 +283,42 @@ router.get('/v1/invalid-order', function (req, res, next) {
                     res.send(retrieve_resp);
                 } else {
                     console.log("无效订单处理成功");
+                    res.send(retrieve_resp);
+                }
+            });
+        } else {
+            retrieve_resp.status = false;
+            retrieve_resp.message = "token过期，重新登录!";
+            console.log("token过期!");
+            res.send(retrieve_resp);
+        }
+    })
+});
+
+/**
+ * 待定订单被处理
+ * @param req
+ * @param res
+ */
+router.get('/v1/problem-order', function (req, res, next) {
+    var retrieve_resp = {
+        status: true,
+        message: "ok",
+        data: []
+    }
+    var apply_id = req.query.apply_id;
+    var token = req.query.token;
+    tokenValidation(token, function (result) {
+        if (result != null) {
+            var updateSql = "update apply set apply_status=3 where apply_id=" + apply_id;
+            pool.query(updateSql, function (error, results, fields) {
+                if (error) {
+                    console.log("Database access error while retrieve operator!");
+                    retrieve_resp.status = false;
+                    retrieve_resp.message = "Internal Error!";
+                    res.send(retrieve_resp);
+                } else {
+                    console.log("待定订单处理成功");
                     res.send(retrieve_resp);
                 }
             });
@@ -414,8 +470,81 @@ router.get('/v1/newtv', function (req, res, next) {
             res.send(err);
         }
     };
-    start(); 
+    start();
 });
+
+/**
+ * 修改订单
+ * @param req
+ * @param res
+ */
+router.post('/v1/xiugai', function (req, res, next) {
+    var retrieve_resp = {
+        status: true,
+        message: "ok",
+        data: []
+    }
+    var apply_id = req.body.xid;
+    var apply_name = req.body.xname;
+    var apply_address = req.body.xaddress;
+    var token = req.body.token;
+    var apply_idcard = req.body.xidcard;
+    var info = req.body.xbeizhu;
+    var apply_phone = req.body.xphone;
+    if (!apply_id){ 
+        retrieve_resp.status = false;
+        retrieve_resp.message = "无效的请求!";
+        res.send( retrieve_resp );
+        return;
+    }
+    var updateSql = "update apply set";
+    if (apply_name){ 
+        updateSql += " apply_name='" + apply_name+"',";
+    }
+    if (apply_address){ 
+        updateSql += " apply_address='" + apply_address+"',";
+    }
+    if (apply_idcard){ 
+        updateSql += " apply_idcard='" + apply_idcard+"',";
+    }
+    if (apply_phone){ 
+        updateSql += " apply_phone='" + apply_phone+"',";
+    }
+    if (info){ 
+        updateSql += " info='" + info+"',";
+    }
+    if(updateSql.lastIndexOf(",") == (updateSql.length - 1)){
+        updateSql = updateSql.substr(0, updateSql.length - 1);
+    }else{
+        retrieve_resp.status = false;
+        retrieve_resp.message = "无效的请求!";
+        res.send( retrieve_resp );
+        return;
+    }
+    updateSql += " where apply_id=" + apply_id;
+    tokenValidation(token, function (result) {
+        if (result != null) {
+            console.log(updateSql);
+            pool.query(updateSql, function (error, results, fields) {
+                if (error) {
+                    console.log("Database access error while retrieve operator!");
+                    retrieve_resp.status = false;
+                    retrieve_resp.message = "Internal Error!";
+                    res.send(retrieve_resp);
+                } else {
+                    console.log("订单修改成功！");
+                    res.send(retrieve_resp);
+                }
+            });
+        } else {
+            retrieve_resp.status = false;
+            retrieve_resp.message = "token过期，重新登录!";
+            console.log("token过期!");
+            res.send(retrieve_resp);
+        }
+    })
+});
+
 
 
 //校验token
